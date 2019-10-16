@@ -1,7 +1,3 @@
-JP_Scraper/lib
-Include
-Lib
-Scripts
 pip-selfcheck.json
 *.pyd
 *.dll
@@ -13,3 +9,13 @@ pip-selfcheck.json
 *.pyc
 Lib/site-packages/__pycache__/cycler.cpython-37.pyc
 Lib/site-packages/Babel-2.7.0.dist-info/INSTALLER
+JP_Scraper/Lib
+Include
+Lib
+Scripts
+JP_Scraper/Lib
+JP_Scraper/Include
+JP_Scraper/Scripts
+JP_Scraper/Lib/
+JP_Scraper/Include/
+JP_Scraper/Scripts/
