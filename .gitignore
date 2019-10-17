@@ -2,10 +2,6 @@ pip-selfcheck.json
 *.pyd
 *.dll
 *.exe
-*.py
-*.pyc
-*.pyc
-*.pyc
 *.pyc
 Lib/site-packages/__pycache__/cycler.cpython-37.pyc
 Lib/site-packages/Babel-2.7.0.dist-info/INSTALLER
@@ -17,5 +13,4 @@ JP_Scraper/Lib
 JP_Scraper/Include
 JP_Scraper/Scripts
 JP_Scraper/Lib/
-JP_Scraper/Include/
 JP_Scraper/Scripts/
