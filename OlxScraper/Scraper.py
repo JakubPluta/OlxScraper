@@ -43,7 +43,7 @@ def olx_links(city='wroclaw',rooms='two'):
                 pass
     return links
 
-#linklist = olx_links(city='wroclaw',rooms='two')
+
 
 def save_pickle(data):
     pickle_out = open('olxlinks.pickle','wb')
@@ -56,7 +56,7 @@ def load_pickle():
     return pickle_data
 
 save_pickle(olx_links(city='wroclaw',rooms='two'))
-#df_links = load_pickle()
+
 
 
 
@@ -71,7 +71,6 @@ def save_offerts():
             try:
                 price = soup.find('div', class_='price-label').text.strip()
                 prices.append(price)
-                #print(link,'------------',price)
 
             except:
                 prices.append('None')
@@ -155,7 +154,7 @@ save_offerts()
 
 
 
-def send_email(mail_to='plutakuba@gmail.com'):
+def send_email(mail_to='olxjp94@gmail.com'):
     import smtplib
     import os
     from email.mime.text import MIMEText
