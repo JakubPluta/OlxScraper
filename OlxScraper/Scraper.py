@@ -154,7 +154,8 @@ save_offerts()
 
 
 
-def send_email(mail_to='olxjp94@gmail.com'):
+def send_email():
+    mail_to = input('Please enter email address: ')
     import smtplib
     import os
     from email.mime.text import MIMEText
@@ -173,9 +174,28 @@ def send_email(mail_to='olxjp94@gmail.com'):
     msg['To'] = email_send
     msg['Subject'] = subject
 
-    body = f'Hej w dniu {str(datetime.date.today())} wysyłam oferty mieszkań z serwisu OLX'
-    msg.attach(MIMEText(body, 'plain'))
+    #body = f'Hej w dniu {str(datetime.date.today())} wysyłam oferty mieszkań z serwisu OLX'
 
+
+    html_body = f"""\
+    <html>
+      <head></head>
+      <body>
+        <p><font size="7"><strong>Hello!</strong></font><br>
+           <font size="4">How are you?</font><br>
+           <font size="3">Today is {str(datetime.date.today())} So you recieve your daily list of flats from OLX.pl</font><br>
+        <font size="3">There is also an attachement with more info about flats. Feel free to download it</font><br>
+        -----------------------------------------------------------------------------------------------------------------
+        </p>
+      </body>
+    </html>
+    """
+
+    msg.attach(MIMEText(html_body, 'html'))
+    data = pd.read_excel('flats.xlsx')
+    data = data[['Title','Price','Czynsz (dodatkowo)','District','Link']]
+    for i, v, c, c2, l in data.values:
+        msg.attach(MIMEText(f'<a href="{l}">{i}</a>' + f' Cena: {v}+ Czynsz {c},Lokalizacja: {c2}' + '\n' + '<br>', 'html'))
     filename = 'flats.xlsx'
     attachment = open(filename, 'rb')
 
@@ -189,9 +209,12 @@ def send_email(mail_to='olxjp94@gmail.com'):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
     server.login(email_user, email_password)
+    try:
+        server.sendmail(email_user, email_send, text)
+        server.quit()
+        print('The mail was send!!!!')
+    except:
+        print('Address not found')
 
-    server.sendmail(email_user, email_send, text)
-    server.quit()
 
 send_email()
-
